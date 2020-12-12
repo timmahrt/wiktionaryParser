@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.7.4" />
+<title>wiktionaryparser.wiki_to_hash API documentation</title>
+<meta name="description" content="Contains pageToDefinitions(), a utility for stripping down a page to an easy-to-work with format …" />
+<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{font-weight:bold}#index h4 + ul{margin-bottom:.6em}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>wiktionaryparser.wiki_to_hash</code></h1>
+</header>
+<section id="section-intro">
+<p>Contains pageToDefinitions(), a utility for stripping down a page to an easy-to-work with format.</p>
+<p>The format is:
+[
+pageName,
+[
+[pronunciations_1, {'Noun': 'noun definition', 'Verb': 'verb definition', &hellip;},
+[pronunciations_2, {'Adj': 'adjective definition', &hellip;}]
+]
+]
+where each entry is a different sense ('etymology' in wikipedia speak)</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#39;&#39;&#39;
+Contains pageToDefinitions(), a utility for stripping down a page to an easy-to-work with format.
+
+The format is:
+[
+  pageName,
+  [
+    [pronunciations_1, {&#39;Noun&#39;: &#39;noun definition&#39;, &#39;Verb&#39;: &#39;verb definition&#39;, ...},
+    [pronunciations_2, {&#39;Adj&#39;: &#39;adjective definition&#39;, ...}]
+  ]
+]
+where each entry is a different sense (&#39;etymology&#39; in wikipedia speak)
+&#39;&#39;&#39;
+
+import re
+#import pdb
+
+from wiktionaryparser import wiki_reader
+
+POS_LIST = [
+    &#39;Adjective&#39;, &#39;Adverb&#39;, &#39;Ambiposition&#39;, &#39;Article&#39;, &#39;Circumposition&#39;,
+    &#39;Classifier&#39;, &#39;Conjunction&#39;, &#39;Contraction&#39;, &#39;Counter&#39;, &#39;Determiner&#39;,
+    &#39;Ideophone&#39;, &#39;Interjection&#39;, &#39;Noun&#39;, &#39;Numeral&#39;, &#39;Participle&#39;,
+    &#39;Particle&#39;, &#39;Postposition&#39;, &#39;Preposition&#39;, &#39;Pronoun&#39;, &#39;Proper noun&#39;,
+    &#39;Verb&#39;
+    ]
+
+PRONUNCIATION = &#39;Pronunciation&#39;
+ETYMOLOGY_LIST = [&#39;Etymology 1&#39;, &#39;Etymology 2&#39;, &#39;Etymology 3&#39;]
+
+languageToCode = {&#39;English&#39;: &#39;en&#39;}
+
+class MissingTargetLangPage(Exception):
+    pass
+
+class MissingPronunciationSection(Exception):
+    pass
+
+class DeletedTree(Exception):
+    pass
+
+def getContentForLanguage(page, pageTitle, language):
+    &#39;&#39;&#39;
+    Get&#39;s the top level section for this page in the target language
+
+    If it doesn&#39;t exist, raise an error.  If it exists but
+    is unparseable, this returns None.
+    &#39;&#39;&#39;
+    languageHeader = &#39;==%s==\n&#39; % language
+    if languageHeader not in page:
+        raise MissingTargetLangPage()
+
+    for rootSection in wiki_reader.buildContentTree(page, 4, language):
+        if rootSection.title == language:
+            rootSection.content = pageTitle
+            return rootSection
+
+    return None
+
+def _pruneSection(root):
+    # Allowed parts of speech
+    # https://en.wiktionary.org/wiki/Wiktionary:Entry_layout#:~:text=Parts%20of%20speech%3A%20Adjective%2C%20Adverb,%2C%20Pronoun%2C%20Proper%20noun%2C%20Verb
+    return root.prune(POS_LIST + [PRONUNCIATION] + ETYMOLOGY_LIST, [], 100)
+
+def _reduceDefinitions(root):
+    &#39;&#39;&#39;
+    Definitions can be very long;  this takes only the first part of each
+    &#39;&#39;&#39;
+
+    bracketedRe = re.compile(&#39;{{.*?}}&#39;)
+
+    def _internalReduceDefinitions(section):
+        if section.title not in POS_LIST:
+            return section.content
+
+        returnContent = section.content
+        splitContent = section.content.split(&#34;#&#34;)
+        if len(splitContent) &gt; 1:
+            returnContent = splitContent[1]
+
+        for char in [&#39;[&#39;, &#39;]&#39;]:
+            returnContent = returnContent.replace(char, &#39;&#39;)
+
+        returnContent = bracketedRe.sub(&#39;&#39;, returnContent)
+
+        return returnContent.strip()
+
+    root.processContent(_internalReduceDefinitions)
+
+    return root
+
+def _cleanPronunciations(root, languageCode):
+    &#39;&#39;&#39;
+    Get the phonemic or phonetic representation of the word
+
+    Prefer phonemic over phonetic (don&#39;t get both).
+    If neither is available, erase the pronunciation&#39;s content
+    &#39;&#39;&#39;
+    bracketedRe = re.compile(&#39;{{.*?}}&#39;)
+    phonemicPronRe = re.compile(&#39;/.*?/&#39;)
+    phoneticPronRe = re.compile(r&#39;\[.*?\]&#39;)
+
+    def _internalCleanPronunciations(section):
+        if section.title != PRONUNCIATION:
+            return section.content
+        potentialPronList = []
+        for pron in bracketedRe.findall(section.content):
+            pronParts = pron[2:-2].split(&#39;|&#39;)
+            if &#39;IPA&#39; not in pronParts[0]:
+                continue
+            if pronParts[1] != languageCode:
+                continue
+            potentialPronList.append(pronParts[2])
+
+        pronList = []
+        for pron in potentialPronList:
+            if phonemicPronRe.match(pron):
+                pronList.append(pron)
+
+        # If there was no phonetic pronunciation
+        # fall back to the phonemic one
+        if not pronList:
+            for pron in potentialPronList:
+                if phoneticPronRe.match(pron):
+                    pronList.append(pron)
+
+        return pronList
+
+    root.processContent(_internalCleanPronunciations)
+
+    return root
+
+def _getPronunciationsFromTree(tree):
+    pronunciations = None
+    pronSection = tree.getSectionByTitle(&#39;Pronunciation&#39;)
+    if pronSection:
+        pronunciations = pronSection.content
+
+    return pronunciations
+
+def _getDefinitionsFromTree(tree):
+    definitions = []
+    for section in tree.subsections:
+        if section.title in POS_LIST:
+            pos = section.title.lower()
+            definition = section.content
+            definitions.append([pos, definition])
+
+    return definitions
+
+def _pairDefinitionsAndPronunciations(pronunciations, definitions, defaultPronunciations=None):
+    if pronunciations is None:
+        pronunciations = defaultPronunciations
+
+    # Aggregate definitions:
+    posToDef = {}
+    for pos, definition in definitions:
+        if pos not in posToDef.keys():
+            posToDef[pos] = []
+        posToDef[pos].append(definition)
+
+    wordData = []
+    if pronunciations and posToDef:
+        wordData = [pronunciations, posToDef]
+
+    return wordData
+
+def _posHashMerge(hashA, hashB):
+    &#39;&#39;&#39;
+    Combines two hashs where the values are lists
+    &#39;&#39;&#39;
+    allKeys = list(hashA.keys()) + list(hashB.keys())
+    mergedHash = {}
+    for key in allKeys:
+        data = hashA.get(key, []) + hashB.get(key, [])
+        mergedHash[key] = data
+
+    return mergedHash
+
+def _getTreeEssentials(tree):
+    &#39;&#39;&#39;
+    Get just the essentials that will be stored in the output
+    &#39;&#39;&#39;
+    subtrees = []
+    for etymology in ETYMOLOGY_LIST:
+        subtree = tree.popSubsection(etymology)
+        if not subtree:
+            break
+        subtrees.append(subtree)
+
+    treeSummary = []
+    rootPronunciations = _getPronunciationsFromTree(tree)
+    rootDefinitions = _getDefinitionsFromTree(tree)
+    treeSummary.extend(_pairDefinitionsAndPronunciations(rootPronunciations, rootDefinitions))
+
+    # Sometimes the etymologies only add definitions but without pronunciation
+    # In that case, take the pronunciation from the higher level
+    # But prefer to use the etymologies&#39; pronunciations if they exist
+    for subtree in subtrees:
+        subPronunciations = _getPronunciationsFromTree(subtree)
+        subDefinitions = _getDefinitionsFromTree(subtree)
+        treeSummary.extend(_pairDefinitionsAndPronunciations(
+            subPronunciations,
+            subDefinitions,
+            rootPronunciations)
+        )
+
+    return treeSummary
+
+def getDefinitionsFromPage(page, language):
+    &#39;&#39;&#39;
+    Given a page a definition, returns all the definitions found on the pages
+
+    There must be at least one definition and one pronunciation for a word to appear in the output.
+    There is one entry per sense.  The root of the document may be a sense, as well as any
+    etymology sections.
+    &#39;&#39;&#39;
+    langCode = languageToCode[language]
+
+    # Debug the target word by skipping all previous words here before parsing happens
+    # targetWord = &#39;Saturday&#39;
+    # if page.title != targetWord:
+    #     return []
+
+    sectionTree = getContentForLanguage(page.content, page.title, language)
+
+    if sectionTree is None:
+        return []
+
+    if not sectionTree.getSectionByTitle(PRONUNCIATION):
+        raise MissingPronunciationSection()
+
+    sectionTree = _pruneSection(sectionTree)
+
+    if sectionTree is None:
+        raise DeletedTree()
+
+    sectionTree = _reduceDefinitions(sectionTree)
+    sectionTree = _cleanPronunciations(sectionTree, langCode)
+    wordSenseDefinitions = _getTreeEssentials(sectionTree)
+
+    # if page.title == targetWord:
+    #     pdb.set_trace()
+
+    return wordSenseDefinitions</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="wiktionaryparser.wiki_to_hash.getContentForLanguage"><code class="name flex">
+<span>def <span class="ident">getContentForLanguage</span></span>(<span>page, pageTitle, language)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Get's the top level section for this page in the target language</p>
+<p>If it doesn't exist, raise an error.
+If it exists but
+is unparseable, this returns None.</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def getContentForLanguage(page, pageTitle, language):
+    &#39;&#39;&#39;
+    Get&#39;s the top level section for this page in the target language
+
+    If it doesn&#39;t exist, raise an error.  If it exists but
+    is unparseable, this returns None.
+    &#39;&#39;&#39;
+    languageHeader = &#39;==%s==\n&#39; % language
+    if languageHeader not in page:
+        raise MissingTargetLangPage()
+
+    for rootSection in wiki_reader.buildContentTree(page, 4, language):
+        if rootSection.title == language:
+            rootSection.content = pageTitle
+            return rootSection
+
+    return None</code></pre>
+</details>
+</dd>
+<dt id="wiktionaryparser.wiki_to_hash.getDefinitionsFromPage"><code class="name flex">
+<span>def <span class="ident">getDefinitionsFromPage</span></span>(<span>page, language)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Given a page a definition, returns all the definitions found on the pages</p>
+<p>There must be at least one definition and one pronunciation for a word to appear in the output.
+There is one entry per sense.
+The root of the document may be a sense, as well as any
+etymology sections.</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def getDefinitionsFromPage(page, language):
+    &#39;&#39;&#39;
+    Given a page a definition, returns all the definitions found on the pages
+
+    There must be at least one definition and one pronunciation for a word to appear in the output.
+    There is one entry per sense.  The root of the document may be a sense, as well as any
+    etymology sections.
+    &#39;&#39;&#39;
+    langCode = languageToCode[language]
+
+    # Debug the target word by skipping all previous words here before parsing happens
+    # targetWord = &#39;Saturday&#39;
+    # if page.title != targetWord:
+    #     return []
+
+    sectionTree = getContentForLanguage(page.content, page.title, language)
+
+    if sectionTree is None:
+        return []
+
+    if not sectionTree.getSectionByTitle(PRONUNCIATION):
+        raise MissingPronunciationSection()
+
+    sectionTree = _pruneSection(sectionTree)
+
+    if sectionTree is None:
+        raise DeletedTree()
+
+    sectionTree = _reduceDefinitions(sectionTree)
+    sectionTree = _cleanPronunciations(sectionTree, langCode)
+    wordSenseDefinitions = _getTreeEssentials(sectionTree)
+
+    # if page.title == targetWord:
+    #     pdb.set_trace()
+
+    return wordSenseDefinitions</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="wiktionaryparser.wiki_to_hash.DeletedTree"><code class="flex name class">
+<span>class <span class="ident">DeletedTree</span></span>
+<span>(</span><span>...)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Common base class for all non-exit exceptions.</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class DeletedTree(Exception):
+    pass</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.Exception</li>
+<li>builtins.BaseException</li>
+</ul>
+</dd>
+<dt id="wiktionaryparser.wiki_to_hash.MissingPronunciationSection"><code class="flex name class">
+<span>class <span class="ident">MissingPronunciationSection</span></span>
+<span>(</span><span>...)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Common base class for all non-exit exceptions.</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class MissingPronunciationSection(Exception):
+    pass</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.Exception</li>
+<li>builtins.BaseException</li>
+</ul>
+</dd>
+<dt id="wiktionaryparser.wiki_to_hash.MissingTargetLangPage"><code class="flex name class">
+<span>class <span class="ident">MissingTargetLangPage</span></span>
+<span>(</span><span>...)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Common base class for all non-exit exceptions.</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class MissingTargetLangPage(Exception):
+    pass</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.Exception</li>
+<li>builtins.BaseException</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="wiktionaryparser" href="index.html">wiktionaryparser</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="wiktionaryparser.wiki_to_hash.getContentForLanguage" href="#wiktionaryparser.wiki_to_hash.getContentForLanguage">getContentForLanguage</a></code></li>
+<li><code><a title="wiktionaryparser.wiki_to_hash.getDefinitionsFromPage" href="#wiktionaryparser.wiki_to_hash.getDefinitionsFromPage">getDefinitionsFromPage</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="wiktionaryparser.wiki_to_hash.DeletedTree" href="#wiktionaryparser.wiki_to_hash.DeletedTree">DeletedTree</a></code></h4>
+</li>
+<li>
+<h4><code><a title="wiktionaryparser.wiki_to_hash.MissingPronunciationSection" href="#wiktionaryparser.wiki_to_hash.MissingPronunciationSection">MissingPronunciationSection</a></code></h4>
+</li>
+<li>
+<h4><code><a title="wiktionaryparser.wiki_to_hash.MissingTargetLangPage" href="#wiktionaryparser.wiki_to_hash.MissingTargetLangPage">MissingTargetLangPage</a></code></h4>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.7.4</a>.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad()</script>
+</body>
+</html>
