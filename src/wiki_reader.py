@@ -1,10 +1,30 @@
 '''
+This parses a wikimedia page. (Yes, dumb idea)
 https://en.wiktionary.org/wiki/Wiktionary:Entry_layout
 '''
 
 import re
 
-def buildContentTree(page, pruneDepth=None):
+class InvalidHierarchy(Exception):
+    pass
+
+class InvalidRoot(Exception):
+    pass
+
+def buildSectionsByRegEx(page, searchRe):
+    result = 'dummy val'
+    start = 0
+    indicies = []
+    while result:
+        result = searchRe.search(page, start)
+        if result:
+            start, stop = result.span()
+            indicies.append([start, stop])
+            start = stop
+
+    return indicies
+
+def buildContentTree(page, pruneDepth=None, language=None):
     '''
     Given a raw wiki page, return a recursively built Section instance
 
@@ -14,37 +34,51 @@ def buildContentTree(page, pruneDepth=None):
     If given, sections of depth greater than pruneDepth will not be included
     in the output
     '''
+
+    # Get the sections for each language
+    languageRe = re.compile(r'(?:^|\n)==[\w\s-]*==\n')
+    rootIndicies = buildSectionsByRegEx(page, languageRe)
+    rootSections = []
+    if len(rootIndicies) > 0:
+        rootIndicies.append([-1, -1])
+        for i in range(len(rootIndicies) - 1):
+            start = rootIndicies[i][0]
+            nextStart = rootIndicies[i + 1][0]
+            rootSections.append(page[start:nextStart])
+
+    # Isolate the target language
+    if language:
+        languageHeader = "==%s==" % language
+        rootSections = list(filter(lambda section: languageHeader in section, rootSections))
+
+    # Get all sections for each language
+    processedRoots = []
     headerRe = re.compile(r'(?:^|\n)={2,}[\w\s-]*={2,}\n')
+    for section in rootSections:
+        indicies = buildSectionsByRegEx(section, headerRe)
 
-    # Get all of the language section headers
-    result = 'dummy val'
-    start = 0
-    indicies = []
-    while result:
-        result = headerRe.search(page, start)
-        if result:
-            start, stop = result.span()
-            indicies.append([start, stop])
-            start = stop
+        # Use the position of the headers to find the content for each section
+        sections = []
+        if len(indicies) > 0:
+            indicies.append([-1, -1])
+            for i in range(len(indicies) - 1):
+                start, stop = indicies[i]
+                nextStart = indicies[i + 1][0]
+                title = section[start:stop]
+                content = section[stop:nextStart]
+                sections.append(Section(title.strip(), content))
 
-    # Use the position of the headers to find the content for each header
-    sections = []
-    if len(indicies) > 0:
-        indicies.append([-1, -1])
-        for i in range(len(indicies) - 1):
-            start, stop = indicies[i]
-            nextStart = indicies[i + 1][0]
-            title = page[start:stop]
-            content = page[stop:nextStart]
-            sections.append(Section(title.strip(), content))
+        # root = _buildContentHierarchy(sections, pruneDepth)
 
-    return _buildContentHierarchy(sections, pruneDepth)
+        try:
+            root = _buildContentHierarchy(sections, pruneDepth)
+        except:
+            #print(page)
+            raise
 
-class InvalidHierarchy(Exception):
-    pass
+        processedRoots.append(root)
 
-class InvalidRoot(Exception):
-    pass
+    return processedRoots
 
 def _buildContentHierarchy(sectionsList, pruneDepth=None):
     '''
@@ -53,7 +87,7 @@ def _buildContentHierarchy(sectionsList, pruneDepth=None):
     Only returns valid trees; else []
     '''
     if not pruneDepth:
-        pruneDepth == 100
+        pruneDepth = 100
 
     if len(sectionsList) == 0:
         return []
@@ -75,11 +109,11 @@ def _buildContentHierarchy(sectionsList, pruneDepth=None):
                 insertList = insertList[-1].subsections
             except IndexError:
                 print(section.title)
-                raise InvalidHierarchy()
+                continue
 
         insertList.append(section)
 
-    return retList
+    return head
 
 
 class Section(object):
@@ -88,11 +122,18 @@ class Section(object):
         self.title = title.replace('=', '')
         self.content = content
         self.subsections = []
-        self.depth = self._calculateDepthFromTitle(title)
+        self.depth = self._calculateDepthFromTitle()
 
-    def _calculateDepthFromTitle(self, text):
+    def _calculateDepthFromTitle(self):
+        '''
+        Gets the depth of the current section from the title
+
+        Wikimedia sections are written as '==This section=='
+        where the number of leading '=' indicates the depth.
+        The minimum number is 2
+        '''
         i = 0
-        while text[i] == '=':
+        while self.title[i] == '=':
             i += 1
         return i - 2
 
@@ -153,6 +194,24 @@ class Section(object):
         return None
 
     def processContent(self, processFunc):
+        '''
+        Apply a function to all content in this node and below it
+        '''
         self.content = processFunc(self)
         for node in self.subsections:
             node.processContent(processFunc)
+
+    def popSubsection(self, title):
+        '''
+        Remove a single subsection with the matching title from below this node
+        '''
+        for i, node in enumerate(self.subsections):
+            if node.title == title:
+                return self.subsections.pop(i)
+
+        for node in self.subsections:
+            matchedSubsection = node.popSubsection(title)
+            if matchedSubsection:
+                return matchedSubsection
+
+        return None

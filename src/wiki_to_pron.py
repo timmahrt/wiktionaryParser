@@ -1,10 +1,19 @@
+'''
+Contains pageToDefinitions(), a utility for stripping down a page to an easy-to-work with format.
+
+The format is:
+[
+  pageName,
+  [
+    [pronunciations_1, {'Noun': 'noun definition', 'Verb': 'verb definition', ...},
+    [pronunciations_2, {'Adj': 'adjective definition', ...}]
+  ]
+]
+where each entry is a different sense ('etymology' in wikipedia speak)
+'''
 
 import re
-import io
-import csv
-
-from mediawiki_dump.dumps import LocalWikipediaDump
-from mediawiki_dump.reader import DumpReader
+#import pdb
 
 import wiki_reader
 
@@ -17,23 +26,50 @@ POS_LIST = [
     ]
 
 PRONUNCIATION = 'Pronunciation'
+ETYMOLOGY_LIST = ['Etymology 1', 'Etymology 2', 'Etymology 3']
+
+languageToCode = {'English': 'en'}
+
+class MissingTargetLangPage(Exception):
+    pass
+
+class MissingPronunciationSection(Exception):
+    pass
+
+class DeletedTree(Exception):
+    pass
 
 def getContentForLanguage(page, pageTitle, language):
-    for rootSection in wiki_reader.buildContentTree(page, 1):
+    '''
+    Get's the top level section for this page in the target language
+
+    If it doesn't exist, raise an error.  If it exists but
+    is unparseable, this returns None.
+    '''
+    languageHeader = '==%s==\n' % language
+    if languageHeader not in page:
+        raise MissingTargetLangPage()
+
+    for rootSection in wiki_reader.buildContentTree(page, 4, language):
         if rootSection.title == language:
             rootSection.content = pageTitle
             return rootSection
 
-def pruneSection(root):
+    return None
+
+def _pruneSection(root):
     # Allowed parts of speech
     # https://en.wiktionary.org/wiki/Wiktionary:Entry_layout#:~:text=Parts%20of%20speech%3A%20Adjective%2C%20Adverb,%2C%20Pronoun%2C%20Proper%20noun%2C%20Verb
-    return root.prune(POS_LIST + [PRONUNCIATION], [], 1)
+    return root.prune(POS_LIST + [PRONUNCIATION] + ETYMOLOGY_LIST, [], 100)
 
-def reduceDefinitions(root):
+def _reduceDefinitions(root):
+    '''
+    Definitions can be very long;  this takes only the first part of each
+    '''
 
     bracketedRe = re.compile('{{.*?}}')
 
-    def _reduceDefinitions(section):
+    def _internalReduceDefinitions(section):
         if section.title not in POS_LIST:
             return section.content
 
@@ -49,138 +85,161 @@ def reduceDefinitions(root):
 
         return returnContent.strip()
 
-    root.processContent(_reduceDefinitions)
+    root.processContent(_internalReduceDefinitions)
 
     return root
 
-def cleanPronunciations(root):
+def _cleanPronunciations(root, languageCode):
+    '''
+    Get the phonemic or phonetic representation of the word
 
+    Prefer phonemic over phonetic (don't get both).
+    If neither is available, erase the pronunciation's content
+    '''
     bracketedRe = re.compile('{{.*?}}')
+    phonemicPronRe = re.compile('/.*?/')
+    phoneticPronRe = re.compile(r'\[.*?\]')
 
-    def _cleanPronunciations(section):
+    def _internalCleanPronunciations(section):
         if section.title != PRONUNCIATION:
             return section.content
+        potentialPronList = []
+        for pron in bracketedRe.findall(section.content):
+            pronParts = pron[2:-2].split('|')
+            if 'IPA' not in pronParts[0]:
+                continue
+            if pronParts[1] != languageCode:
+                continue
+            potentialPronList.append(pronParts[2])
 
         pronList = []
-        for pron in bracketedRe.findall(section.content):
-            if 'IPA' not in pron or 'IPA letters' in pron:
-                continue
-            left, right = pron.rsplit('|', 1)
-            if 'en' not in left:
-                continue
-            remaining = right.split('/')
-            if len(remaining) != 3:
-                continue
-            pronList.append(remaining[1])
+        for pron in potentialPronList:
+            if phonemicPronRe.match(pron):
+                pronList.append(pron)
+
+        # If there was no phonetic pronunciation
+        # fall back to the phonemic one
+        if not pronList:
+            for pron in potentialPronList:
+                if phoneticPronRe.match(pron):
+                    pronList.append(pron)
 
         return pronList
 
-    try:
-        root.processContent(_cleanPronunciations)
-    except:
-        print(root.toJson())
-        raise
+    root.processContent(_internalCleanPronunciations)
 
     return root
 
-def getTreeEssentials(tree):
-    '''
-    Get just the essentials that will be stored in the output
-    '''
-    word = tree.content
-
+def _getPronunciationsFromTree(tree):
     pronunciations = None
     pronSection = tree.getSectionByTitle('Pronunciation')
     if pronSection:
         pronunciations = pronSection.content
 
-    definition = None
+    return pronunciations
+
+def _getDefinitionsFromTree(tree):
+    definitions = []
     for section in tree.subsections:
         if section.title in POS_LIST:
             pos = section.title.lower()
             definition = section.content
+            definitions.append([pos, definition])
+
+    return definitions
+
+def _pairDefinitionsAndPronunciations(pronunciations, definitions, defaultPronunciations=None):
+    if pronunciations is None:
+        pronunciations = defaultPronunciations
+
+    # Aggregate definitions:
+    posToDef = {}
+    for pos, definition in definitions:
+        if pos not in posToDef.keys():
+            posToDef[pos] = []
+        posToDef[pos].append(definition)
+
+    wordData = []
+    if pronunciations and posToDef:
+        wordData = [pronunciations, posToDef]
+
+    return wordData
+
+def _posHashMerge(hashA, hashB):
+    '''
+    Combines two hashs where the values are lists
+    '''
+    allKeys = list(hashA.keys()) + list(hashB.keys())
+    mergedHash = {}
+    for key in allKeys:
+        data = hashA.get(key, []) + hashB.get(key, [])
+        mergedHash[key] = data
+
+    return mergedHash
+
+def _getTreeEssentials(tree):
+    '''
+    Get just the essentials that will be stored in the output
+    '''
+    subtrees = []
+    for etymology in ETYMOLOGY_LIST:
+        subtree = tree.popSubsection(etymology)
+        if not subtree:
             break
+        subtrees.append(subtree)
 
     treeSummary = []
-    if pronunciations and definition:
-        for pronunciation in pronunciations:
-            treeSummary.append([word, pronunciation, pos, definition])
+    rootPronunciations = _getPronunciationsFromTree(tree)
+    rootDefinitions = _getDefinitionsFromTree(tree)
+    treeSummary.extend(_pairDefinitionsAndPronunciations(rootPronunciations, rootDefinitions))
+
+    # Sometimes the etymologies only add definitions but without pronunciation
+    # In that case, take the pronunciation from the higher level
+    # But prefer to use the etymologies' pronunciations if they exist
+    for subtree in subtrees:
+        subPronunciations = _getPronunciationsFromTree(subtree)
+        subDefinitions = _getDefinitionsFromTree(subtree)
+        treeSummary.extend(_pairDefinitionsAndPronunciations(
+            subPronunciations,
+            subDefinitions,
+            rootPronunciations)
+        )
 
     return treeSummary
 
-class DeletedTree(Exception):
-    pass
-
 def pageToDefinitions(page, language):
+    '''
+    Given a page a definition, returns all the definitions found on the pages
+
+    There must be at least one definition and one pronunciation for a word to appear in the output.
+    There is one entry per sense.  The root of the document may be a sense, as well as any
+    etymology sections.
+    '''
+    langCode = languageToCode[language]
+
+    # Debug the target word by skipping all previous words here before parsing happens
+    # targetWord = 'Saturday'
+    # if page.title != targetWord:
+    #     return []
+
     sectionTree = getContentForLanguage(page.content, page.title, language)
+
     if sectionTree is None:
         return []
 
-    sectionTree = pruneSection(sectionTree)
+    if not sectionTree.getSectionByTitle(PRONUNCIATION):
+        raise MissingPronunciationSection()
+
+    sectionTree = _pruneSection(sectionTree)
+
     if sectionTree is None:
         raise DeletedTree()
 
-    sectionTree = reduceDefinitions(sectionTree)
-    sectionTree = cleanPronunciations(sectionTree)
-    definitionRows = getTreeEssentials(sectionTree)
+    sectionTree = _reduceDefinitions(sectionTree)
+    sectionTree = _cleanPronunciations(sectionTree, langCode)
+    wordSenseDefinitions = _getTreeEssentials(sectionTree)
 
-    return definitionRows
+    # if page.title == targetWord:
+    #     pdb.set_trace()
 
-
-def testPage(pageAsTextFn):
-    '''
-    Debugging problems with specific pages
-    '''
-    class TestPage:
-        def __init__(self, content, title):
-            self.content = content
-            self.title = title
-
-    with io.open(pageAsTextFn, "r", encoding="utf-8") as fd:
-        pageTxt = fd.read()
-
-    testPage = TestPage(pageTxt, "Sleep")
-    print(pageToDefinitions(testPage, 'English'))
-
-
-def readWikiDump(bz2FileDumpFn, outputFn):
-    dump = LocalWikipediaDump(bz2FileDumpFn)
-    pages = DumpReader().read(dump)
-    total = 0
-    dataful = 0
-    errored = 0
-    with io.open(outputFn, "w", encoding="utf-8") as fd:
-        csvWriter = csv.writer(fd, delimiter=',', quoting=csv.QUOTE_MINIMAL)
-        for page in pages:
-            total += 1
-
-            if total % 50000 == 0:
-                print("%d / %d pages had at least 1 definition" % (dataful, total))
-
-            try:
-                definitionRows = pageToDefinitions(page, 'English')
-            except: # Shhh
-                errored += 1
-                if errored % 1000 == 0:
-                    print('%d pages errored out' % errored)
-
-                print(page.title)
-
-                if errored > 1000:
-                    raise
-
-
-            if len(definitionRows) > 0:
-                dataful += 1
-            for definitionRow in definitionRows:
-                csvWriter.writerow(definitionRow)
-
-    print("%d / %d pages had at least 1 definition" % (dataful, total))
-    print('%d pages errored out' % errored)
-
-if __name__ == '__main__':
-    fn = "enwiktionary-latest-pages-articles.xml.bz2"
-    outputFn = 'wiki_definitions.txt'
-    readWikiDump(fn, outputFn)
-
-    # testPage('test_page.txt')
+    return wordSenseDefinitions
