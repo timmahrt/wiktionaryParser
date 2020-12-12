@@ -15,7 +15,7 @@ where each entry is a different sense ('etymology' in wikipedia speak)
 import re
 #import pdb
 
-import wiki_reader
+from wiktionaryparser import wiki_reader
 
 POS_LIST = [
     'Adjective', 'Adverb', 'Ambiposition', 'Article', 'Circumposition',
@@ -207,7 +207,7 @@ def _getTreeEssentials(tree):
 
     return treeSummary
 
-def pageToDefinitions(page, language):
+def getDefinitionsFromPage(page, language):
     '''
     Given a page a definition, returns all the definitions found on the pages
 
