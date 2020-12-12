@@ -1,0 +1,363 @@
+==English==
+
+===Pronunciation===
+* {{a|GA}} {{IPA|en|/t͡ʃip/}}
+* {{a|RP}} {{enPR|chēp}}, {{IPA|en|/t͡ʃiːp/}}
+* {{audio|en|En-uk-cheap.ogg|Audio (UK)}}
+* {{rhymes|en|iːp}}
+* {{homophones|en|cheep}}
+
+===Alternative forms===
+* {{l|en|chap}}, {{l|en|chop}} {{qualifier|dialectal}}
+
+===Etymology===
+From {{inh|en|enm|cheep}}, {{m|enm|chepe}}/{{m|enm|chepen}}, {{m|enm|chep}}, {{m|enm|cheap}}/{{m|enm|cheapien}}, {{m|enm|chapien}}, from {{inh|en|ang|cēap||cattle, purchase, sale, traffic, business, bargain, gain, payment, value, price, goods, possessions, property, market, saleable commodities, trade}}, {{m|ang|ċēapian||to bargain, chaffer, trade, to contract for the purchase or sale of, buy, bribe, endeavor to bribe}}, from {{inh|en|gem-pro|*kaupaz}}, {{m|gem-pro|*kaupô||inn-keeper, merchant}}, {{m|gem-pro|*kaupōną}}, {{m|gem-pro|*kaupijaną||to buy, purchase}}, from {{der|en|la|caupō||tradesman, innkeeper}}, related to {{cog|grc|κάπηλος||huckster}}, likely a common Mediterranean borrowing into several IE languages, more at {{m|la|caupō}}. Cognate with {{cog|sco|chepe||to sell}}, {{m|sco|chape||sale price}}, {{cog|frr|keap||purchase}}, {{cog|fy|keap||purchase, buy, acquisition}}, {{cog|nl|koop||buy, purchase, deal}}, {{m|nl|kopen||to buy, purchase, shop}}, {{cog|nds|kopen||to buy}}, {{cog|de|Kauf||trade, traffic, bargain, purchase, buy}}, {{m|de|kaufen||to buy}}, {{cog|sv|köp||bargain, purchase}}, {{m|sv|köpa||to buy, purchase}}, {{cog|nn|kjøpa||to buy, purchase}}, {{cog|is|kaup||purchase, bargain}}, {{m|is|kaupa||to purchase}}; also borrowed as {{cog|fi|kauppa||shop, trade}}.
+
+===Noun===
+{{en-noun|~}}
+
+# {{lb|en|obsolete}} [[trade|Trade]]; [[traffic]]; [[chaffer]]; [[chaffering]].
+# {{lb|en|obsolete}} A [[market]]; [[marketplace]].
+# [[price|Price]].
+# {{lb|en|obsolete}} A low price; a [[bargain]].
+#* {{RQ:Shakespeare Henry 4-1|III|iii|passage=The sack that thou hast drunk me would have bought me lights as good '''cheap''' at the dearest chandler's in Europe.}}
+# [[cheapness|Cheapness]]; lowness of price; abundance of supply. {{rfex|en}}
+
+===Adjective===
+{{en-adj|er}}
+
+# [[low|Low]] and/or reduced in [[price]].
+#* {{RQ:Locke Value}}
+#*: Where there are many sellers and few purchases, land will be '''cheap'''.
+#* {{quote-book|en|year=1918|author={{w|W. B. Maxwell}}|chapter=3
+|title=[http://openlibrary.org/works/OL1097634W The Mirror and the Lamp]
+|passage=One saint's day in mid-term a certain newly appointed suffragan-bishop came to the school chapel, and there preached on “The Inner Life.”&nbsp; He at once secured attention by his informal method, and when presently the coughing of Jarvis […] interrupted the sermon, he altogether captivated his audience with a remark about cough lozenges being '''cheap''' and easily procurable.}}
+#* {{quote-journal|en|date=2013-07-20|volume=408|issue=8845|magazine={{w|The Economist}}
+|title=[http://www.economist.com/news/http://www.economist.com/news/asia/21582043-villagers-enjoy-sunlight-after-dark-out-gloom Out of the gloom]
+|passage=[Rural solar plant] schemes are of little help to industry or other heavy users of electricity. Nor is solar power yet as '''cheap''' as the grid. For all that, the rapid arrival of electric light to Indian villages is long overdue. When the national grid suffers its next huge outage, as it did in July 2012 when hundreds of millions were left in the dark, look for specks of light in the villages.}}
+# Of [[poor]] [[quality]].
+# Of [[little]] [[worth]].
+#* {{RQ:Dryden Aureng-zebe|passage=You grow '''cheap''' in every subject's eye.}}
+# {{lb|en|slang|of an action or tactic in a game of skill}} [[underhand|Underhand]] or [[unfair]].
+#: ''the '''cheap''' trick of hiding deadly lava under pushable blocks''
+# {{lb|en|informal|chiefly|derogatory}} [[stingy|Stingy]]; [[mean]]; excessively [[frugal]].
+#: {{ux|en|Insurance is expensive, but don't be so '''cheap''' that you risk losing your home because of a fire.}}
+# {{lb|en|finance}} [[trade|Trading]] at a price level which is low relative to historical trends, a similar asset, or (for [[derivative]]s) a theoretical value.
+#: ''The [[ETF]] is trading '''cheap''' to [[NAV]] right now; we can [[arb]] this by buying the ETF and selling the [[underlying]] constituents.''
+
+=====Synonyms=====
+* {{sense|low/reduced in price}} {{l|en|bargain}}, {{l|en|inexpensive}}, {{l|en|frugal}}, {{l|en|no-frills}}, {{l|en|priced-off}}
+* {{sense|of poor quality}} {{l|en|flimsy}}
+
+=====Antonyms=====
+* {{sense|low or reduced in price}} {{l|en|dear}}<!-- used in Australia, not sure about elsewhere -->, [[expensive]], [[high-priced]], [[pricey]]
+* {{sense|of low value}} {{l|en|precious}}, {{l|en|valuable}}
+* {{sense|financial markets}} {{l|en|rich}}
+
+=====Related terms=====
+{{rel-top|terms derived from cheap}}
+* {{l|en|chapman}}
+* {{l|en|cheap and cheerful}}
+* {{l|en|cheap as chips}}
+* {{l|en|cheap drunk}}
+* {{l|en|cheapen}}
+* {{l|en|cheapjack}}
+* {{l|en|cheaply}}
+{{rel-mid}}
+* {{l|en|cheapness}}
+* {{l|en|cheap shot}}
+* {{l|en|cheapskate}}
+* {{l|en|cheapstead}}
+* {{l|en|dirt cheap}}
+* {{l|en|el cheapo}}
+* {{l|en|on the cheap}}
+* {{l|en|talk is cheap}}
+* {{l|en|hold cheap}}
+{{rel-bottom}}
+
+=====See also=====
+* [[:Appendix:Fighting_game_terms#Cheap_.2F_Cheese|Appendix:Fighting Game Terms]]
+
+=====Translations=====
+{{trans-top|low and/or reduced in price}}
+* Afrikaans: {{t|af|goedkoop}}
+* Albanian: {{t+|sq|lirë|alt=i lirë}}
+* Amharic: {{t|am|ርካሽ}}, {{t|am|እርካሽ}}
+* Arabic: {{t|ar|رَخِيص}}
+*: Egyptian Arabic: {{t|arz|رخيص|tr=riḵīṣ|sc=Arab}}
+*: Moroccan Arabic: {{t|ary|رْخيص|m|tr=rḵiṣ}}
+* Armenian: {{t+|hy|էժան}}
+* Asturian: {{t|ast|baratu}}
+* Azerbaijani: {{t+|az|ucuz}}
+* Bashkir: {{t|ba|осһоҙ|sc=Cyrl}}, {{t|ba|арзан|sc=Cyrl}}
+* Basque: {{t|eu|merke}}
+* Belarusian: {{t|be|та́нны}}, {{t|be|дзяшо́вы}} {{qualifier|colloquial}}
+* Bengali: {{t|bn|সস্তা|sc=Beng}}
+* Bulgarian: {{t+|bg|е́втин}} {{q|low}}; {{t+|bg|намале́н}} {{q|reduced}}
+* Burmese: {{t+|my|သက်သာ|sc=Mymr}}, {{t+|my|ဈေးချို|sc=Mymr}}
+* Catalan: {{t+|ca|barat}}
+* Chamicuro: {{t|ccc|warato}}
+* Chichewa: {{t|ny|tchipa|alt=yotchipa}}
+* Chinese:
+*: Cantonese: {{t|yue|平|tr=peng4|sc=Hani}}
+*: Dungan: {{t|dng|пянйи}}, {{t|dng|җян}}
+*: Hakka: {{t|hak|便宜|tr=phièn-ngì|sc=Hani}}
+*: Mandarin: {{t+|cmn|便宜|tr=piányi|sc=Hani}}, {{t+|cmn|賤}}, {{t+|cmn|贱|tr=jiàn}}
+*: Min Nan: {{t+|nan|俗|tr=sio̍k|sc=Hant}}
+*: Wu: {{t|wuu|𠼢|tr=jjian}}
+* Chuvash: {{t|cv|йӳнӗ|sc=Cyrl}}
+* Czech: {{t+|cs|levný}}
+* Danish: {{t+|da|billig}}
+* Dutch: {{t+|nl|goedkoop}}, {{t|nl|onduur}}, {{t+|nl|betaalbaar}}, {{t+|nl|afgeprijsd}}, {{t|nl|in aanbieding}}
+* Esperanto: {{t|eo|malmultekosta}}
+* Estonian: {{t+|et|odav}}
+* Faroese: {{t|fo|bíligur}}
+* Finnish: {{t+|fi|halpa}}
+* French: {{t+|fr|bon marché}}, {{t|fr|[[pas]] [[cher]]}}, {{t|fr|[[peu]] [[cher]]}}, {{t+|fr|économique}}
+* Galician: {{t+|gl|barato}}, {{t|gl|barateiro}} {{q|low}}; {{t|gl|rebaixado|m}} {{q|reduced}}
+* Georgian: {{t|ka|იაფფასიანი|sc=Geor}}
+* German: {{t+|de|billig}}, {{t+|de|preiswert}}, {{t+|de|preisgünstig}}
+* Greek: {{t+|el|φτηνός}}
+*: Ancient: {{t|grc|εὐτελής}}, {{t|grc|εὔωνος}}, {{t|grc|εὐθηνός}}
+* Hebrew: {{t+|he|זוֹל|m|tr=zol}}, {{t|he|זולה|f|tr=zola}}
+* Hindi: {{t+|hi|सस्ता}}
+* Hungarian: {{t+|hu|olcsó}}
+* Icelandic: {{t+|is|ódýr}}
+* Ido: {{t+|io|chipa}}
+* Indonesian: {{t+|id|murah}}
+* Irish: {{t|ga|saor}}
+* Isan: {{t-needed|tts}}
+* Italian: {{t+|it|economico}}, {{t|it|a buon mercato}}
+* Japanese: {{t+|ja|安い|tr=やすい, yasui}}, {{t+|ja|安価|tr=あんか, anka}}, {{qualifier|extremely cheap}} {{t+|ja|激安|tr=げきやす, gekiyasu}}
+* Karakhanid: {{t|xqa|اُجُزْ|tr=učuz}}
+* Kazakh: {{t+|kk|арзан|sc=Cyrl}}
+* Khmer: {{t+|km|ថោក}}
+* Korean: {{t+|ko|싸다}} {{qualifier|predicative}}, {{t+|ko|싼}} {{qualifier|attributive}}
+* Kurdish:
+*: Central Kurdish: {{t+|ckb|ھەرزان}}
+*: Northern Kurdish: {{t+|kmr|erzan}}
+* Kyrgyz: {{t+|ky|арзан|sc=Cyrl}}
+* Lao: {{t|lo|ຖືກ}}
+* Latin: {{t|la|vīlis}}
+* Latvian: {{t|lv|lēts}}
+{{trans-mid}}
+* Lithuanian: {{t|lt|pigus|m}}, {{t|lt|pigi|f}}
+* Luxembourgish: {{t|lb|bëlleg}}
+* Lü: {{t-needed|khb}}
+* Macedonian: {{t|mk|евтин}} {{q|low}}; {{t|mk|намален|m}}, {{t|mk|снижен|m}}, {{t|mk|поевтинет|m}} {{q|reduced}}
+* Malay: {{t|ms|murah}}
+* Maltese: {{t|mt|rħis}}
+* Manx: {{t|gv|neuphriosoil}}
+* Maori: {{t|mi|utu ngāwari}}
+* Mongolian: {{t|mn|хямд төсөр|sc=Cyrl}}
+* Nepali: {{t|ne|सस्तो}}, {{t+|ne|सुलभ}}
+* Norman: {{qualifier|Guernsey}} {{t|nrf|bouan marchi}}, {{qualifier|Jersey}} {{t|nrf|bouôn marchi}}
+* Norwegian:
+*: Bokmål: {{t+|nb|billig}}
+*: Nynorsk: {{t|nn|billeg}}, {{t|nn|billig}}
+* Old East Slavic: {{t|orv|дешевъ}}
+* Old English: {{t|ang|undīere}}
+* Ottoman Turkish: {{t|ota|اوجوز|tr=ucuz}}
+* Pashto: {{t+|ps|ارزان|tr=arzân}}
+* Persian: {{t+|fa|ارزان|tr=arzân}}, {{t+|fa|مفت|tr=moft|sc=fa-Arab}}
+* Polish: {{t+|pl|tani}}
+* Portuguese: {{t+|pt|barato}} {{q|low}}; {{t|pt|barateado}} {{q|reduced}}
+* Romanian: {{t+|ro|ieftin}}
+* Romansch: {{qualifier|Rumantsch Grischun}} {{t|rm|bunmartgà}}, {{qualifier|Sursilvan}} {{t|rm|bienmarcau}}, {{qualifier|Sutsilvan}} {{t|rm|bùnmartgieu}}, {{qualifier|Surmiran}} {{t|rm|bunmartgea}}, {{qualifier|Puter}} {{t|rm|bunmarcho}}, {{qualifier|Vallader}} {{t|rm|bunmarchà}}
+* Russian: {{t+|ru|дешёвый}}, {{t+|ru|недорого́й}}
+* Rusyn: {{t|rue|тунї}}
+* Sanskrit: {{t|sa|अल्पमूल्य}}, {{t|sa|न्यूनमूल्य}}
+* Serbo-Croatian:
+*: Cyrillic: {{t|sh|је̏фтин}}
+*: Roman: {{t+|sh|jȅftin}}
+* Shan: {{t-needed|shn}}
+* Shona: {{t|sn|chipa|alt=-chipa}}
+* Sinhalese: {{t|si|බාල|sc=Sinh}}, {{t|si|ලාභ|sc=Sinh}}
+* Slovak: {{t|sk|lacný}}
+* Slovene: {{t+|sl|poceni}}
+* Sorbian:
+*: Lower Sorbian: {{t|dsb|tuni}}, {{t|dsb|pśigódny}}
+* Spanish: {{t+|es|barato}}, {{t+|es|económico}}
+* Swahili: {{t+|sw|rahisi}}
+* Swedish: {{t+|sv|billig}} {{q|low}}; {{t+|sv|nedsatt}} {{q|reduced}}
+* Tagalog: {{t|tl|mura}}
+* Tajik: {{t+|tg|арзон|sc=Cyrl}}
+* Tamil: {{t|ta|மலிவான}}
+* Tatar: {{t|tt|арзан|sc=Cyrl}}
+* Telugu: {{t+|te|చౌక|sc=Telu}} {{q|low}}; {{t|te|తగ్గింపు ధర|sc=Telu}} {{q|reduced}}
+* Thai: {{t+|th|ถูก}}
+* Tibetan: {{t|bo|ཁེ་པོ}}
+* Tigrinya: {{t|ti|ሕሱር}}
+* Turkish: {{t+|tr|ucuz}}
+* Turkmen: {{t+|tk|arzan}}
+* Ukrainian: {{t+|uk|деше́вий}}
+* Urdu: {{t+|ur|سستا|tr=sastā|sc=ur-Arab}}, {{t|ur|ارزاں|tr=arzān|sc=ur-Arab}}
+* Uyghur: {{t|ug|ئەرزان|sc=ug-Arab}}
+* Uzbek: {{t+|uz|arzon}}
+* Vietnamese: {{t+|vi|rẻ}}
+* Volapük: {{t+|vo|jerik}}
+* Walloon: {{t+|wa|bonmartchî}}
+* Warray: {{t|war|barato}}
+* Welsh: {{t+|cy|rhad}}
+* Westrobothnian: {{t|gmq-bot|räing}}
+* White Hmong: {{t-needed|mww}}
+* Yiddish: {{t|yi|ביליק}}
+* Zazaki: {{t|zza|arzan}}, {{t|zza|erzan}}, {{t|zza|ercan}}, {{t|zza|ercon}} {{q|low}}; {{t|zza|erzan}} {{q|reduced}}
+* Zhuang: {{t|za|bienzngeiz}}, {{t|za|cienh}}
+{{trans-bottom}}
+
+{{trans-top|of poor quality}}
+* Armenian: {{t+|hy|էժանագին}}
+* Basque: {{t|eu|merke}}
+* Bulgarian: {{t+|bg|долнока́чествен}}
+* Catalan: {{t+|ca|barat}}
+* Chinese:
+*: Cantonese: {{t|yue|渣|tr=zaa2|sc=Hani}}, {{t|yue|鮓|tr=zaa2|sc=Hani}}
+*: Mandarin: {{t+|cmn|低級|alt=低級的|sc=Hani}}, {{t+|cmn|低级|tr=dījí de|alt=低级的|sc=Hani}}
+* Danish: {{t|da|tarvelig}}
+* Dutch: {{t+|nl|goedkoop}}, {{t|nl|laagwaardig}}, {{t+|nl|ordinair}}
+* Finnish: {{t+|fi|kehno}}, {{t+|fi|huono}}, {{t+|fi|halpa}}, {{t+|fi|huonolaatuinen}}
+* French: {{qualifier|colloquial}} {{t+|fr|à deux balles}}, {{t|fr|au rabais}}
+* German: {{t+|de|billig}}
+* Greek: {{t+|el|φτηνός|sc=Grek}}
+*: Ancient: {{t|grc|εὐτελής}}
+* Hungarian: {{t+|hu|olcsó}}
+* Italian: {{t+|it|scadente}}
+* Japanese: {{t|ja|安っぽい|tr=やすっぽい, yasuppoi}}, {{t|ja|安物|alt=安物の|tr=やすものの, yasumono no}}, {{t|ja|チープ|tr=chīpu|sc=Jpan}}
+* Kurdish:
+*: Central Kurdish: {{t+|ckb|توڕەھات}}
+{{trans-mid}}
+* Latin: {{t|la|vīlis}}
+* Latvian: {{t|lv|lēts}}
+* Macedonian: {{t|mk|евтин}}, {{t|mk|неквалите́тен}}
+* Old English: {{t|ang|undīere}}
+* Pashto: {{t+|ps|ارزان|tr=arzân}}
+* Polish: {{t+|pl|tandetny}}
+* Portuguese: {{t+|pt|barato}}
+* Russian: {{t+|ru|низкопро́бный}}, {{t+|ru|нека́чественный}}, {{t+|ru|низкока́чественный}}
+* Serbo-Croatian:
+*: Cyrillic: {{t|sh|јефтин|m|sc=Cyrl}}, {{t|sh|неквалитетан|m|sc=Cyrl}}
+*: Roman: {{t+|sh|jeftin|m}}, {{t+|sh|nekvalitetan|m}}
+* Slovene: {{t|sl|cenen}}
+* Spanish: {{t+|es|barato}}, {{t+|es|corriente}}
+* Swedish: {{t+|sv|billig}}
+* Tamil: {{t|ta|தரம் குறைந்த}}
+* Telugu: {{t|te|తక్కువ రకం|sc=Telu}}
+* Turkish: {{t+|tr|ucuz}}, {{t+|tr|adi}}, {{t+|tr|kıytırık}}
+{{trans-bottom}}
+
+{{trans-top|of little worth}}
+* Armenian: {{t+|hy|էժանագին}}
+* Bulgarian: {{t+|bg|е́втин}}
+* Chinese:
+*: Mandarin: {{t+|cmn|價廉|alt=價廉的|sc=Hani}}, {{t+|cmn|价廉|tr=jiàlián de|alt=价廉的|sc=Hani}}
+* Danish: {{t+|da|billig}}
+* Dutch: {{t+|nl|goedkoop}}, {{t+|nl|waardeloos}}, {{t+|nl|schamel}}
+* Finnish: {{t|fi|vähäarvoinen}}, {{t+|fi|arvoton}}
+* French: {{t+|fr|modique}}
+* Greek: {{t+|el|φτηνός}}
+* Hungarian: {{t+|hu|olcsó}}, {{t+|hu|értéktelen}}
+* Italian: {{t+|it|scadente}}
+* Kurdish:
+*: Central Kurdish: {{t+|ckb|بێقیمەت}}
+* Latin: {{t|la|vīlis}}
+{{trans-mid}}
+* Latvian: {{t|lv|lēts}}
+* Macedonian: {{t|mk|евтин|m}}
+* Old English: {{t|ang|undīere}}
+* Polish: {{t+|pl|tandetny|m}}
+* Portuguese: {{t+|pt|vil}}, {{t+|pt|reles}}
+* Russian: {{t+|ru|дешёвый}}
+* Serbo-Croatian:
+*: Cyrillic: {{t|sh|јефтин|m|sc=Cyrl}}
+*: Roman: {{t+|sh|jeftin|m}}
+* Slovene: {{t|sl|cenen}}
+* Swedish: {{t+|sv|billig}}
+* Telugu: {{t|te|స్వల్ప లాభం|sc=Telu}}
+* Turkish: {{t+|tr|ucuz}}, {{t+|tr|adi}}
+* Zazaki: {{t|zza|erzan}}
+{{trans-bottom}}
+
+{{trans-top|slang: underhand or unfair in game}}
+* Bulgarian: {{t+|bg|е́втин}}
+* Chinese:
+*: Mandarin: {{t+|cmn|卑鄙}}, {{t+|cmn|卑鄙|tr=bēi bì}}
+* Danish: {{t+|da|billig}}
+* Finnish: {{t+|fi|halpamainen}}, {{t+|fi|raukkamainen}}
+{{trans-mid}}
+* Macedonian: {{t|mk|евтин|m}}
+* Polish: {{t+|pl|tani|m}}
+* Swedish: {{t+|sv|billig}}
+{{trans-bottom}}
+
+{{trans-top|frugal, stingy}}
+* Finnish: {{t+|fi|pihi}}, {{t+|fi|kitsas}}, {{t+|fi|itara}}
+* French: {{t+|fr|radin}}
+* German: {{t+|de|geizig}}
+{{trans-mid}}
+* Russian: {{t+|ru|скупо́й}}, {{t+|ru|ска́редный}}, {{t+|ru|прижи́мистый}}
+* Turkish: {{t+|tr|cimri}}
+* Zazaki: {{t|zza|çıkos}}
+{{trans-bottom}}
+
+{{trans-top|finance: trading at a low price level}}
+* Finnish: {{t+|fi|halpa}}
+{{trans-mid}}
+{{trans-bottom}}
+
+{{checktrans-top}}
+* Ancient Greek: {{t-check|grc|εὐθηνής}}
+* Breton: {{t+check|br|marc'had-mat}}
+* Esperanto: {{t-check|eo|malmultekosta}}
+* Indonesian: {{t+check|id|murah}}
+* Northern Sotho: {{t-check|nso|tšhipilê}}
+* Romanian: {{t+check|ro|ieftin}}
+{{trans-mid}}
+* Telugu: {{t+check|te|చౌక|sc=Telu}}, {{t+check|te|సరసమైన|sc=Telu}}
+* Tswana: {{t-check|tn|chipi}}, {{t-check|tn|[[ga]] [[e]] [[ture]]}} <!-- was "[[ga]] [[e]] [[ture]]" - assumed sum-of-parts; if an idiom, remove the wikilinks to the individual words. see [[User:Kephir/gadgets/xte#Translation_fixing]] -->
+* Turkish: {{t+check|tr|ucuz}}
+* Xhosa: {{t-check|xh|-tshiphu}}
+* Yoruba: {{t-check|yo|ọpẹ}}, {{t-check|yo|pọ̀}}
+{{trans-bottom}}
+
+===Verb===
+{{en-verb}}
+
+# {{lb|en|intransitive|obsolete}} To [[trade]]; [[traffic]]; [[bargain]]; [[chaffer]]; ask the [[price]] of goods; [[cheapen]] goods.
+# {{lb|en|transitive|obsolete}} To bargain for; chaffer for; ask the price of; offer a price for; cheapen.
+# {{lb|en|transitive|obsolete}} To [[buy]]; [[purchase]].
+# {{lb|en|transitive|obsolete}} To [[sell]].
+
+====Derived terms====
+* {{l|en|cheap out}}
+
+====Usage notes====
+Use of {{m|en|cheap}} as a verb has been surpassed by {{m|en|cheapen}}.
+
+===Adverb===
+{{en-adv}}
+
+# Cheaply.
+#: {{rfquotek|en|Milton}}
+
+===Anagrams===
+* {{anagrams|en|a=acehp|Peach|Pecha|chape|chapé|peach}}
+
+[[Category:English basic words]]
+
+----
+
+==Irish==
+
+===Pronunciation===
+* {{IPA|ga|/çapˠ/}}
+
+===Noun===
+{{head|ga|mutated noun|g=m}}
+
+# {{ga-lenition of|ceap|lang=ga}}
+
+===Verb===
+{{head|ga|verb form}}
+
+# {{inflection of|ga|ceap||past|indc|analytic}}
