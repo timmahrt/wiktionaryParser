@@ -122,9 +122,9 @@ class Section(object):
         self.title = title.replace('=', '')
         self.content = content
         self.subsections = []
-        self.depth = self._calculateDepthFromTitle()
+        self.depth = self._calculateDepthFromTitle(title)
 
-    def _calculateDepthFromTitle(self):
+    def _calculateDepthFromTitle(self, title):
         '''
         Gets the depth of the current section from the title
 
@@ -133,7 +133,7 @@ class Section(object):
         The minimum number is 2
         '''
         i = 0
-        while self.title[i] == '=':
+        while title[i] == '=':
             i += 1
         return i - 2
 
