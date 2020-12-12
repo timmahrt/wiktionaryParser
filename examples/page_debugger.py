@@ -23,8 +23,8 @@ def loadTestPage(pageAsTextFn, title, language):
     testPage = TestPage(pageTxt, title)
     print(wiki_to_hash.getDefinitionsFromPage(testPage, language))
 
-if __name__ == "__main__":
-    _pageAsTextFn = join('.', 'files', 'cheap.txt')
-    _title = 'Cheap'
-    _language = 'English'
-    loadTestPage(_pageAsTextFn, _title, _language)
+
+_pageAsTextFn = join('.', 'files', 'cheap.txt')
+_title = 'Cheap'
+_language = 'English'
+loadTestPage(_pageAsTextFn, _title, _language)
