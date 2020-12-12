@@ -105,16 +105,3 @@ See `examples/extract_english_wiki_pronunciations.py` to see how I'm using it.
 [mediawiki_dump](https://github.com/macbre/mediawiki-dump)
 `pip install mediawiki_dump`
 
-## Installation
-
-WiktionaryParser is on pypi and can be installed or upgraded from the command-line shell with pip like so
-
-    python -m pip install wiktionaryparser --upgrade
-
-Otherwise, to manually install, after downloading the source from github, from a command-line shell, navigate to the directory containing setup.py and type
-
-    python setup.py install
-
-If python is not in your path, you'll need to enter the full path e.g.
-
-    C:\Python36\python.exe setup.py install
