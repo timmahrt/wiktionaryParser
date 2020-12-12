@@ -85,7 +85,7 @@ is variable (e.g. sometimes stress and syllables are marked, sometimes not).
 
 Automatically generated pdocs can be found here:
 
-http://timmahrt.github.io/wiktionaryparser/
+http://timmahrt.github.io/wiktionaryParser/
 
 ## Version History
 
