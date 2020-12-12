@@ -5,7 +5,7 @@ specific pages without dealing with the whole corpus
 import io
 from os.path import join
 
-from wikitionaryparser import wiki_to_pron
+from wiktionaryparser import wiki_to_hash
 
 class TestPage:
 
@@ -21,7 +21,7 @@ def loadTestPage(pageAsTextFn, title, language):
         pageTxt = fd.read()
 
     testPage = TestPage(pageTxt, title)
-    print(wiki_to_pron.pageToDefinitions(testPage, language))
+    print(wiki_to_hash.getDefinitionsFromPage(testPage, language))
 
 if __name__ == "__main__":
     _pageAsTextFn = join('.', 'files', 'cheap.txt')

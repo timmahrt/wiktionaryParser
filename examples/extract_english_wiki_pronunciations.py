@@ -2,8 +2,8 @@
 from mediawiki_dump.dumps import LocalWikipediaDump
 from mediawiki_dump.reader import DumpReader
 
-from wikitionaryparser.con
-from wikitionaryparser.utilities import utils
+from wiktionaryparser import wiki_to_hash
+from wiktionaryparser.utilities import utils
 
 def readWikiDump(bz2FileDumpFn, outputFn):
     dump = LocalWikipediaDump(bz2FileDumpFn)
@@ -11,32 +11,33 @@ def readWikiDump(bz2FileDumpFn, outputFn):
     counter = utils.ResultCounter()
     targetLang = 'English'
     try:
-        with io.open(outputFn, "w", encoding="utf-8") as fd:
-            for page in pages:
-                counter.total += 1
+        for page in pages:
+            counter.total += 1
 
-                definitionRows = []
-                try:
-                    definitionRows = pageToDefinitions(page, targetLang)
-                except MissingTargetLangPage:
-                    counter.wrongLang += 1
-                    continue
-                except MissingPronunciationSection:
-                    counter.noPronunciation += 1
-                    continue
-                except: # Shhh
-                    counter.errored += 1
-                    if counter.errored % 1000 == 0:
-                        counter.printResult()
-                    continue
+            if counter.total > 10000:
+                counter.printResult()
+                exit(0)
 
-                if len(definitionRows) > 0:
-                    counter.dataful += 1
-                else:
-                    counter.noErrorButNoData += 1
-                    print(page.title)
-            # for definitionRow in definitionRows:
-            #     csvWriter.writerow(definitionRow)
+            definitionRows = []
+            try:
+                definitionRows = wiki_to_hash.getDefinitionsFromPage(page, targetLang)
+            except wiki_to_hash.MissingTargetLangPage:
+                counter.wrongLang += 1
+                continue
+            except wiki_to_hash.MissingPronunciationSection:
+                counter.noPronunciation += 1
+                continue
+            except: # Shhh
+                counter.errored += 1
+                if counter.errored % 1000 == 0:
+                    counter.printResult()
+                continue
+
+            if len(definitionRows) > 0:
+                counter.dataful += 1
+            else:
+                counter.noErrorButNoData += 1
+                print(page.title)
     finally:
         counter.printResult()
 
